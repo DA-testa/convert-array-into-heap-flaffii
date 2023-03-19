@@ -36,7 +36,7 @@ def main():
     # TODO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
-    input_type = input("Enter input type (I for keyboard, F for file): ")
+    input_type = input()
     
     if input_type == "I":
         n = int(input())
