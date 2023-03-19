@@ -1,14 +1,35 @@
 # python3
 
 
-def build_heap(data):
+def heapify(arr, n, i, swaps):
+
+    smallest = i 	
+    left = 2*i + 1
+    right = 2*i + 2
+    
+ 
+    if left < n and arr[left] < arr[smallest]:
+        smallest = left
+        
+   
+    if right < n and arr[right] < arr[smallest]:
+        smallest = right
+    
+
+    if smallest != i:
+        arr[i], arr[smallest] = arr[smallest], arr[i]  
+        swaps.append((i, smallest))  
+        heapify(arr, n, smallest, swaps)  
+
+def build_heap(arr):
+
+    n = len(arr)
     swaps = []
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
 
-
+    for i in range(n//2 - 1, -1, -1):
+        heapify(arr, n, i, swaps)
+    
     return swaps
-
 
 def main():
     
@@ -16,24 +37,30 @@ def main():
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
 
+    if input_type == "I":
+        n = int(input())
+        data = list(map(int, input().split()))
 
-    # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
+        assert len(data) == n
 
-    # checks if lenght of data is the same as the said lenght
-    assert len(data) == n
-
+    elif input_type == "F":
+        file_name = input("Enter file name: ")
+        with open(file_name, "r") as f:
+            n = int(f.readline())
+            data = list(map(int, f.readline().split()))  
+            
+            assert len(data) == n
+    else:
+        print("Invalid input type.")
+        return
     # calls function to assess the data 
     # and give back all swaps
-    swaps = build_heap(data)
+        swaps = build_heap(data)
 
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
-
-
-    # output all swaps
     print(len(swaps))
+    assert len(swaps) <= 4 * n
     for i, j in swaps:
         print(i, j)
 
