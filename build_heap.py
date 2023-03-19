@@ -44,7 +44,8 @@ def main():
         assert len(data) == n
 
     elif letter == 'F':
-        file_name = input()
+        file_name = input().strip()
+        file_name = "test/" + file_name
         with open(file_name, "r") as f:
             n = int(f.readline())
             data = list(map(int, f.readline().split()))  
