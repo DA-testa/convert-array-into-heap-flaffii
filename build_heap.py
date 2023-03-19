@@ -36,24 +36,21 @@ def main():
     # TODO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
-    input_type = input()
+    I
     
-    if input_type == "I":
-        n = int(input())
+    if letter == 'I':
+        n = int(input().strip())
         data = list(map(int, input().split()))
 
         assert len(data) == n
 
-    elif input_type == "F":
-        file_name = input("Enter file name: ")
+    elif letter == 'F':
+        file_name = input().strip()
         with open(file_name, "r") as f:
             n = int(f.readline())
             data = list(map(int, f.readline().split()))  
             
             assert len(data) == n
-    else:
-        print("Invalid input type.")
-        return
     # calls function to assess the data 
     # and give back all swaps
         swaps = build_heap(data)
